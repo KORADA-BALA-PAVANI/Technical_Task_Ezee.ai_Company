@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Information</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Changed to min-height for better responsiveness */
+            background: linear-gradient(120deg, #f0f0f0 0%, #e0e0e0 100%);
+            padding:3%;
+            height: 100vh;
+        }
+
+        .device-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .device-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px; /* Increased padding for better touch experience */
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 8px; /* Increased border-radius for a softer look */
+            font-size: 18px; /* Increased font size for better readability */
+            font-weight: 600; /* Adjusted font weight for emphasis */
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .device-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow on hover */
+        }
+
+        #deviceDescription {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.2); /* Adjusted box-shadow for better visibility */
+            z-index: 1000;
+            border-radius: 8px;
+            max-width: 80%;
+            width: 500px;
+            box-sizing: border-box;
+        }
+
+        #closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px; /* Increased font size for better visibility */
+            font-weight: bold;
+            color: #333;
+        }
+
+        #deviceTitle {
+            font-size: 28px; /* Increased font size for better emphasis */
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px; /* Increased margin for better spacing */
+        }
+
+        #deviceDetails {
+            font-size: 18px; /* Increased font size for better readability */
+            line-height: 1.6; /* Adjusted line-height for better spacing */
+            color: #333;
+        }
+
+        .h {
+            top: -8px; /* Adjusted top position for better alignment */
+        }
+        .d{
+            padding:2%;
+            border:2px solid black;
+            margin-top: -260px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Device Information</h1>
+    <div class="container-fluid">
+    <div class="d">
+    <ul class="device-list">
+        <li class="device-item" onclick="showDeviceDescription('MobilePhone')">Mobile Phone</li>
+        <li class="device-item" onclick="showDeviceDescription('Laptop')">Laptop</li>
+        <li class="device-item" onclick="showDeviceDescription('Desktop')">Desktop</li>
+        <li class="device-item" onclick="showDeviceDescription('Air conditioner')">Air conditioner</li>
+        <li class="device-item" onclick="showDeviceDescription('Digital camera')">Digital camera</li>
+        <li class="device-item" onclick="showDeviceDescription('Bluetooth speaker')">Bluetooth speaker</li>
+        <li class="device-item" onclick="showDeviceDescription('Earphones')">Earphones</li>
+        <li class="device-item" onclick="showDeviceDescription('Clothes dryer')">Clothes dryer</li>
+        <li class="device-item" onclick="showDeviceDescription('Backup charger')">Backup charger</li>
+        <li class="device-item" onclick="showDeviceDescription('Alarm clock')">Alarm clock</li>
+        <li class="device-item" onclick="showDeviceDescription('Smart Fans')">Smart Fans</li>
+        <li class="device-item" onclick="showDeviceDescription('LED Tv')">LED TV</li>
+    </ul>
+</div>
+    <div id="deviceDescription">
+        <span id="closeButton" onclick="closeDeviceDescription()">X</span>
+        <h2 id="deviceTitle"></h2>
+        <p id="deviceDetails"></p>
+    </div>
+</div>
+    <script>
+        function showDeviceDescription(deviceName) {
+            document.getElementById('deviceTitle').innerText = deviceName;
+            var details = generateRandomDetails();
+            document.getElementById('deviceDetails').innerText = details;
+            document.getElementById('deviceDescription').style.display = 'block';
+        }
+
+        function closeDeviceDescription() {
+            document.getElementById('deviceDescription').style.display = 'none';
+        }
+
+        function generateRandomDetails() {
+            var detailsList = [
+                "A mobile phone is a portable telephone that can make and receive calls over a radio frequency link while the user is moving within a telephone service area, as opposed to a fixed-location phone.",
+                "A laptop computer or notebook computer, also known as a laptop or notebook for short, is a small, portable personal computer. ",
+                "A desktop computer is a personal computer designed for regular use at a stationary location on or near a desk due to its size and power requirements.",
+                "a system or process for controlling the temperature, humidity, and sometimes the purity of the air in an interior, as of an office, theater, laboratory, or house, especially one capable of cooling. an air-conditioning system or unit.",
+                "A digital camera is a camera that captures photographs in digital memory. Most cameras produced today are digital, largely replacing those that capture images on photographic film.",
+                "Wireless speakers are loudspeakers that receive audio signals using radio frequency waves rather than over audio cables.",
+                "Headphones are also known as earphones or, colloquially, cans. Circumaural ('around the ear') and supra-aural ('over the ear') headphones use a band over the top of the head to hold the speakers in place.",
+                "A clothes dryer, also known as tumble dryer or simply dryer, is a powered household appliance that is used to remove moisture from a load of clothing, bedding and other textiles, usually after they are washed in a washing machine.",
+                "A backup battery charger system means a small battery charger system that is voltage and frequency dependent and designed to provide power to an end use product in the event of a power outage.",
+                "An alarm clock or alarm is a clock that is designed to alert an individual or group of people at a specified time. The primary function of these clocks is to awaken people from their night's sleep or short naps; they can sometimes be used for other reminders as well. ",
+                "Smart fan is a term used to refer to ceiling fans that offer more functionality compared to regular fans. These extra benefits are targeted at convenience for the user, and this is don't by allowing features like automation or remote access.",
+                "A smart TV, also known as a connected TV, is a traditional television set with integrated Internet and interactive Web 2.0 features that allow users to stream music and videos, browse the internet, and view photos. Smart TVs are a technological convergence of computers, televisions, and digital media players.",
+            ];
+            var randomIndex = Math.floor(Math.random() * detailsList.length);
+            return detailsList[randomIndex];
+        }
+    </script>
+
+</body>
+</html>
